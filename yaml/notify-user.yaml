@@ -1,0 +1,29 @@
+apiVersion: "nuclio.io/v1"
+kind: Function
+metadata:
+  name: notify-user
+  namespace: nuclio
+spec:
+  handler: "main:handler"
+  description: "Sends a security alert to the user"
+  runtime: nodejs
+  image: "nuclio/processor-amqpconsume:latest"
+  minReplicas: 1
+  maxReplicas: 1
+  targetCPU: 75
+  triggers:
+    amqp-user-trigger:
+      class: ""
+      kind: rabbit-mq
+      url: "amqp://guest:guest@192.168.1.164:5672"
+      attributes:
+        exchangeName: notify/user
+        queueName: notify/user
+        topics:
+          - security
+  build:
+    functionSourceCode: Y29uc3QgYW1xcCA9IHJlcXVpcmUoImFtcXBsaWIvY2FsbGJhY2tfYXBpIik7Cgpjb25zdCB1cmwgPSAiYW1xcDovL2d1ZXN0Omd1ZXN0QDE5Mi4xNjguMS4xNjQ6NTY3MiI7Cgpjb25zdCB1c2VyVGVybWluYWxRdWV1ZSA9ICJub3RpZnkvdXNlci90ZXJtaW5hbCI7Cgpjb25zdCBub3RpZnlVc2VyID0gKGFsZXJ0KSA9PiB7CiAgICBhbXFwLmNvbm5lY3QodXJsLCAoY29ubmVjdGlvbkVycm9yLCBjb25uZWN0aW9uKSA9PiB7CiAgICAgICAgaWYgKGNvbm5lY3Rpb25FcnJvcikKICAgICAgICAgICAgdGhyb3cgY29ubmVjdGlvbkVycm9yOwoKICAgICAgICBjb25uZWN0aW9uLmNyZWF0ZUNoYW5uZWwoKGNoYW5uZWxFcnJvciwgY2hhbm5lbCkgPT4gewogICAgICAgICAgICBpZiAoY2hhbm5lbEVycm9yKQogICAgICAgICAgICAgICAgdGhyb3cgY2hhbm5lbEVycm9yOwoKICAgICAgICAgICAgY2hhbm5lbC5hc3NlcnRRdWV1ZSh1c2VyVGVybWluYWxRdWV1ZSwge2R1cmFibGU6IGZhbHNlfSk7CgogICAgICAgICAgICBjaGFubmVsLnNlbmRUb1F1ZXVlKHVzZXJUZXJtaW5hbFF1ZXVlLCBCdWZmZXIuZnJvbShhbGVydCkpOwoKICAgICAgICAgICAgY29uc29sZS5sb2coYFNlbnQgJHthbGVydH0gb24gJHt1c2VyVGVybWluYWxRdWV1ZX1gKTsKCiAgICAgICAgICAgIGNoYW5uZWwuY2xvc2UoKTsKICAgICAgICB9KTsKICAgIH0pOwp9Cgpjb25zdCBiaW5hcnlUb1N0cmluZyA9IChhcnJheSkgPT4gewogICAgbGV0IHJlc3VsdCA9ICIiOwogICAgZm9yIChsZXQgaSA9IDA7IGkgPCBhcnJheS5sZW5ndGg7ICsraSkKICAgICAgICByZXN1bHQgKz0gKFN0cmluZy5mcm9tQ2hhckNvZGUoYXJyYXlbaV0pKTsKCiAgICByZXR1cm4gcmVzdWx0Owp9CgpleHBvcnRzLmhhbmRsZXIgPSAoY29udGV4dCwgZXZlbnQpID0+IHsKICAgIGNvbnN0IHBhcnNlZEV2ZW50ID0gSlNPTi5wYXJzZShKU09OLnN0cmluZ2lmeShldmVudCkpOwogICAgY29uc3QgYWxlcnQgPSBiaW5hcnlUb1N0cmluZyhwYXJzZWRFdmVudC5ib2R5LmRhdGEpOwoKICAgIG5vdGlmeVVzZXIoYWxlcnQpOwp9
+    commands:
+      - "npm install amqplib"
+    codeEntryType: sourceCode
+  platform: {}
