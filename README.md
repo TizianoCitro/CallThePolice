@@ -78,7 +78,7 @@ After your Nuclio instance has been successfully started, browse to http://local
 Follow these steps:
 
 - Create a new project named `CallThePolice`
-- Click on `Create Function` and then on `Import Function` to upload `notifyAlert`, `notifyUser` and `notifyPolice` functions by using `notify-alert.yaml`, `notify-user.yaml` and `notify-police.yaml` files respectively. You can find the files in `./yaml-function` folder.
+- Click on `Create Function` and then on `Import` to upload `notifyAlert`, `notifyUser` and `notifyPolice` functions by using `notify-alert.yaml`, `notify-user.yaml` and `notify-police.yaml` files respectively. You can find the files in `./yaml-function` folder.
 
 ### Creating Telegram bots
 
@@ -140,3 +140,5 @@ Open a tool for making HTTP requests, such as Postman, and make a POST request t
 ## Demo
 
 Let's see now a short demo of the project.
+
+[Demo](https://imgur.com/9ddjYsu)
