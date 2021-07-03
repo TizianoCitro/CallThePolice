@@ -44,7 +44,7 @@ To start a `Nuclio` instance with Docker:
 ```sh
 $ docker run -p 8070:8070 -v /var/run/docker.sock:/var/run/docker.sock -v /tmp:/tmp nuclio/dashboard:stable-amd64
 ```
-Then, browse to http://localhost:8070 to access to Nuclio dashboard.
+Then, browse to http://localhost:8070 in order to access to Nuclio dashboard.
 
 ### Docker
 
@@ -52,7 +52,7 @@ Docker is a tool designed to make it easier to create, deploy, and run applicati
 
 Unlike when using virtual machines, Docker containers use the same Linux kernel as the system that they're running on, which results in a significant performance boost.
 
-Docker is used in the architecture to deploy the function in an application container and each of the functions is a Docker container that is listening on a socket port and can be invoked by any of the configurable triggers.
+Docker is used in the architecture to deploy functions in application containers and each of the functions is a Docker container that is listening on a socket port and can be invoked by any of the configurable triggers.
 
 ## How to use
 
@@ -75,10 +75,11 @@ $ docker run -p 8070:8070 -v /var/run/docker.sock:/var/run/docker.sock -v /tmp:/
 ```
 
 After your Nuclio instance has been successfully started, browse to http://localhost:8070 to access to Nuclio dashboard.
-Follow these steps:
+Then, simply follow these steps:
 
 - Create a new project named `CallThePolice`
-- Click on `Create Function` and then on `Import` to upload `notifyAlert`, `notifyUser` and `notifyPolice` functions by using `notify-alert.yaml`, `notify-user.yaml` and `notify-police.yaml` files respectively. You can find the files in `./yaml-function` folder.
+- Click on `Create Function` and then on `Import` to upload `notifyAlert`, `notifyUser` and `notifyPolice` functions by using `notify-alert.yaml`, `notify-user.yaml` and `notify-police.yaml` files respectively. You can find these files in `./yaml-function` folder.
+- Click on `Create Function` and then on `Deploy`
 
 ### Creating Telegram bots
 
@@ -91,7 +92,7 @@ Follow these steps to create the bot CallThePolice:
 - Choose a unique id by following BotFather instruction
 - Copy the token it gives to you and paste it in the `.env` file for the constant `USER_BOT_TOKEN`
 
-Now, you have to create the bot ImThePolice and to do so you have to repeat what you did just few moments ago:
+Now, you have to create the bot ImThePolice and, to do so, you have to repeat what you did just few moments ago:
 
 - Type `/newBot` in BotFather chat
 - Specify `ImThePoliceBot` as a name for your bot
@@ -108,7 +109,7 @@ $ npm install
 
 ### Running Telegram bots
 
-Open another terminal window and type: 
+In the terminal, from the root of the project folder, type: 
 
 ```sh
 $ cd src/bot/
@@ -124,7 +125,7 @@ $ node call-the-police-bot.js
 $ node im-the-police-bot.js
 ```
 
-After you have successfully run the two bots, go to Telegram and type `/start` in both the chat of your previously created bots.  
+After you have successfully run the two bots, go to Telegram and type `/start` in both the chats of your previously created bots.  
 
 ## Try it
 
@@ -132,13 +133,13 @@ Open a tool for making HTTP requests, such as Postman, and make a POST request t
 
 ```c
 {
-    "from": "Your beautiful camera",
-    "location": "Your beautiful garden"
+    "from": "Beautiful Sensor",
+    "location": "Beautiful Garden"
 }
 ```
 
 ## Demo
 
-Let's see now a short demo of the project.
+Finally, let's see a demo of the project.
 
 ![Demo](./demo/demo.gif)
