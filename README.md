@@ -141,4 +141,4 @@ Open a tool for making HTTP requests, such as Postman, and make a POST request t
 
 Let's see now a short demo of the project.
 
-[Demo](https://imgur.com/9ddjYsu)
+![Demo](./demo/demo.gif)
