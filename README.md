@@ -142,4 +142,4 @@ Open a tool for making HTTP requests, such as Postman, and make a POST request t
 
 Finally, let's see a demo of the project.
 
-![Demo](./demo/demo.gif)
+![Demo](https://github.com/TizianoCitro/CallThePolice/blob/master/demo/Demo.gif)
