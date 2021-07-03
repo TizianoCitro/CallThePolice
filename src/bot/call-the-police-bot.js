@@ -32,7 +32,7 @@ const sendMessageToUser = (msg) => {
     userSensor = alert.from;
     userLocation = alert.location;
 
-    const message = `I've got an alert from ${userSensor} in your ${userLocation}`;
+    const message = `Hey ${userName}! I've got an alert from ${userSensor} in your ${userLocation}!`;
 
     bot.telegram.sendMessage(chatId, message, options);
 }
@@ -86,7 +86,7 @@ bot.action("callThePolice", (ctx) => {
             const key = "security";
             channel.assertExchange(policeQueue, "topic", {durable: false});
 
-            const alert = `${userName} has got an alert from his sensor ${userSensor} in the ${userLocation}`;
+            const alert = `The customer ${userName} has got an alert from his ${userSensor} in the ${userLocation}!`;
             channel.publish(policeQueue, key, Buffer.from(alert));
 
             console.log(`Sent ${alert} on ${policeQueue}/${key}`);

@@ -7,8 +7,6 @@ const url = `amqp://guest:guest@${process.env.IP}:5672`;
 
 let chatId = null;
 let userName = null;
-let userLocation = null;
-let userSensor = null;
 
 const listenForMessages = () => {
     amqp.connect(url, (connectionError, connection) => {
