@@ -1,32 +1,34 @@
-var amqp = require('amqplib');
+const amqp = require('amqplib');
 
 const url = "amqp://guest:guest@192.168.1.164:5672";
 const userTerminalQueue = "notify/user/terminal";
 
-function notifyUser(alert) {
-    amqp.connect(url).then(function(conn) {
-        return conn.createChannel().then(function(ch) {
-            var ok = ch.assertQueue(userTerminalQueue, {durable: false});
-            return ok.then(function(_qok) {
-                ch.sendToQueue(userTerminalQueue, Buffer.from(alert));
-                console.log(`Sent ${alert} on ${userTerminalQueue}`);
-                return ch.close();
-            });
-        }).finally(function() { conn.close(); });
-    }).catch(console.warn);
-}
-
 function bin2string(array) {
-    var result = "";
-    for(var i = 0; i < array.length; ++i) {
+    let result = "";
+    for (let i = 0; i < array.length; ++i) {
         result += (String.fromCharCode(array[i]));
     }
     return result;
 }
 
+function notifyUser(alert) {
+    amqp.connect(url).then(function(connection) {
+        return connection.createChannel().then(function(channel) {
+            const ok = channel.assertQueue(userTerminalQueue, {durable: false});
+            return ok.then(function(_qok) {
+                channel.sendToQueue(userTerminalQueue, Buffer.from(alert));
+                console.log(`Sent ${alert} on ${userTerminalQueue}`);
+                return channel.close();
+            });
+        }).finally(function() {
+            connection.close();
+        });
+    }).catch(console.warn);
+}
+
 exports.handler = function(context, event) {
-    var parsedEvent = JSON.parse(JSON.stringify(event));
-    var alert = bin2string(parsedEvent.body.data);
+    const parsedEvent = JSON.parse(JSON.stringify(event));
+    const alert = bin2string(parsedEvent.body.data);
 
     context.callback(alert);
 

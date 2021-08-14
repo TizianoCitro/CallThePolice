@@ -10,18 +10,18 @@ let userName = null;
 
 const listenForMessages = () => {
     amqp.connect(url, (connectionError, connection) => {
-        if (connectionError)
+        if (connectionError) {
             throw connectionError;
+        }
 
         connection.createChannel((channelError, channel) => {
-            if (channelError)
+            if (channelError) {
                 throw channelError;
+            }
 
             const policeTerminalQueue = "notify/police/terminal";
             channel.assertQueue(policeTerminalQueue, {durable: false});
-
             console.log("Waiting for consuming messages...");
-
             channel.consume(policeTerminalQueue, (msg) => {
                 console.log("Received alert: " + msg.content.toString());
 
@@ -33,7 +33,6 @@ const listenForMessages = () => {
 
 bot.start((ctx) => {
     console.log("The bot has been started");
-
     chatId = ctx.update.message.chat.id;
     userName = ctx.update.message.chat.first_name;
     ctx.reply(`Hi ${userName}!\nI'm ImThePoliceBot, I'm waiting for any kind of problem!`)
