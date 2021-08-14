@@ -69,7 +69,7 @@ Then, to launch it run:
 dynamodb-admin
 ```
 
-Finally, you can access the dashboard by browsing to http://localhost:8081.
+Finally, you can access the dashboard by browsing to http://localhost:8001.
 
 ### Docker
 
@@ -105,6 +105,22 @@ Then, simply follow these steps:
 - Create a new project named `CallThePolice`
 - Click on `Create Function` and then on `Import` to upload `notifyAlert`, `notifyUser` and `notifyPolice` functions by using `notify-alert.yaml`, `notify-user.yaml` and `notify-police.yaml` files respectively. You can find these files in `./yaml-function` folder.
 - Click on `Create Function` and then on `Deploy`
+
+### Starting Amazon DynamoDD and DynamoDB-Admin
+
+A little more to do, open a third terminal and type the following command to start an instance of Amazon DynamoDB on Docker:
+
+```sh
+$ docker run -p 8000:8000 amazon/dynamodb-local -jar DynamoDBLocal.jar -inMemory -sharedDb
+```
+
+In a fourth terminal type the following command to start DynamoDB-Admin:
+
+```sh
+$ dynamodb-admin
+```
+
+Browse to http://localhost:8001 to have access to the dashboard, so that you can see saved reports.
 
 ### Creating Telegram bots
 
