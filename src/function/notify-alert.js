@@ -15,7 +15,7 @@ function bin2string(array) {
 function notifyAlert(alert) {
     amqp.connect(url).then(function (connection) {
         return connection.createChannel().then(function (channel) {
-            const ok = channel.assertExchange(userQueue, 'topic', {durable: false});
+            const ok = channel.assertExchange(userQueue, "topic", {durable: false});
             return ok.then(function () {
                 channel.publish(userQueue, key, Buffer.from(alert));
                 console.log(`Sent ${alert} on ${userQueue}/${key}`);

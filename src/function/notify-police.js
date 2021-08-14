@@ -68,7 +68,7 @@ function savePoliceReport(alert) {
         if (err) {
             console.error(`Unable to add item due to error: ${JSON.stringify(err, null, 2)}`);
         } else {
-            console.log(`Added item:: ${JSON.stringify(data, null, 2)}`);
+            console.log(`Added item: ${JSON.stringify(data, null, 2)}`);
         }
     });
 }
