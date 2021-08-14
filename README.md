@@ -106,7 +106,7 @@ Then, simply follow these steps:
 - Click on `Create Function` and then on `Import` to upload `notifyAlert`, `notifyUser` and `notifyPolice` functions by using `notify-alert.yaml`, `notify-user.yaml` and `notify-police.yaml` files respectively. You can find these files in `./yaml-function` folder.
 - Click on `Create Function` and then on `Deploy`
 
-### Starting Amazon DynamoDD and DynamoDB-Admin
+### Starting Amazon DynamoDB and DynamoDB-Admin
 
 A little more to do, open a third terminal and type the following command to start an instance of Amazon DynamoDB on Docker:
 
