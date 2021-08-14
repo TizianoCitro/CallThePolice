@@ -12,7 +12,7 @@ The project is composed by three functions:
 
 - `NotifyAlert`: sends notification of an alert to the `notify/user` queue with routing key `security`.
 - `NotifyUser`: receives and processes notification of an alert sent to the `notify/user` queue for the routing key `security` and sends the notification to the user terminal by communicating it to the `notify/user/terminal` queue.
-- `NotifyPolice`: receives and processes notification of an alert sent to the `notify/police` queue for the routing key `security` and sends the notification to the user terminal by communicating it to the `notify/police/terminal` queue.
+- `NotifyPolice`: receives and processes notification of an alert sent to the `notify/police` queue for the routing key `security` and sends the notification to the user terminal by communicating it to the `notify/police/terminal` queue. It also takes care of storing the received alert to DynamoDB `PoliceReport` table (the table will be automatically created by the function if it does not exist already).
 
 And two bots:
 
@@ -45,6 +45,31 @@ To start a `Nuclio` instance with Docker:
 $ docker run -p 8070:8070 -v /var/run/docker.sock:/var/run/docker.sock -v /tmp:/tmp nuclio/dashboard:stable-amd64
 ```
 Then, browse to http://localhost:8070 in order to access to Nuclio dashboard.
+
+### Amazon DynamoDB
+Amazon DynamoDBis a key-value and document database for every application that needs consistent single-digit millisecond latency at any scale.
+
+To start a `DynamoDB` instance with Docker:
+
+```sh
+$ docker run -p 8000:8000 amazon/dynamodb-local -jar DynamoDBLocal.jar -inMemory -sharedDb
+```
+
+When using DynamoDB locally you're not provided with a dashboard, so you can use `DynamoDB-Admin` as your local dashboard. It allows you to manage everything related to the data stored in your local DynamoDB instance.
+
+For installing `DynamoDB-Admin` on MacOS you can run:
+
+```sh
+sudo npm install -g dynamodb-admin
+```
+
+Then, to launch it run:
+
+```sh
+dynamodb-admin
+```
+
+Finally, you can access the dashboard by browsing to http://localhost:8081.
 
 ### Docker
 
