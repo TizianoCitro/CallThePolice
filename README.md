@@ -12,7 +12,7 @@ The project is composed by three functions:
 
 - `NotifyAlert`: sends notification of an alert to the `notify/user` queue with routing key `security`.
 - `NotifyUser`: receives and processes notification of an alert sent to the `notify/user` queue for the routing key `security` and sends the notification to the user terminal by communicating it to the `notify/user/terminal` queue.
-- `NotifyPolice`: receives and processes notification of an alert sent to the `notify/police` queue for the routing key `security` and sends the notification to the user terminal by communicating it to the `notify/police/terminal` queue. It also takes care of storing the received alert to DynamoDB `PoliceReport` table (the table will be automatically created by the function if it does not exist already).
+- `NotifyPolice`: receives and processes notification of an alert sent to the `notify/police` queue for the routing key `security` and sends the notification to the police terminal by communicating it to the `notify/police/terminal` queue. It also takes care of storing the received alert to DynamoDB `PoliceReport` table (the table will be automatically created by the function if it does not exist already).
 
 And two bots:
 
