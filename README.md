@@ -8,6 +8,8 @@ For the purpose of demonstrating the project, the terminals, of both user and po
 
 ## Architecture
 
+![Architecture](https://github.com/TizianoCitro/CallThePolice/blob/master/media/Architecture.png)
+
 The project is composed by three functions:
 
 - `NotifyAlert`: sends notification of an alert to the `notify/user` queue with routing key `security`.
@@ -47,6 +49,7 @@ $ docker run -p 8070:8070 -v /var/run/docker.sock:/var/run/docker.sock -v /tmp:/
 Then, browse to http://localhost:8070 in order to access to Nuclio dashboard.
 
 ### Amazon DynamoDB
+
 Amazon DynamoDBis a key-value and document database for every application that needs consistent single-digit millisecond latency at any scale.
 
 To start a `DynamoDB` instance with Docker:
@@ -183,4 +186,4 @@ Open a tool for making HTTP requests, such as Postman, and make a POST request t
 
 Finally, let's see a demo of the project.
 
-![Demo](https://github.com/TizianoCitro/CallThePolice/blob/master/demo/Demo.gif)
+![Demo](https://github.com/TizianoCitro/CallThePolice/blob/master/media/Demo.gif)
